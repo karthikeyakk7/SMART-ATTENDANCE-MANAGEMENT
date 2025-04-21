@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Student Attendance</title>
+    <!-- Include your CSS styles here if needed -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add table styles */
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Your custom styles here */
+
+        .navbar-brand {
+            font-size: 24px;
+        }
+        /* Custom CSS for showing dropdown on hover */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        /* Custom CSS to remove caret symbol */
+        .nav-item.dropdown > a::after {
+            display: none;
+        }
+        /* Custom CSS for changing background color on hover */
+        .dropdown-item:hover {
+            background-color: #CDCCC8; /* Bootstrap primary color */
+            color: #000;
+             text-style:bold;/* White text color */
+        }
+
+        /* Additional styles for responsiveness and beautification */
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+                    /* Additional styles for the hover effect */
+            .navbar-nav .nav-item {
+                position: relative;
+            }
+
+            .nav-item::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 2px; /* Height of the rectangle */
+                background-color: transparent; /* Initial color */
+                bottom: 0;
+                left: 0;
+                transition: background-color 0.3s ease; /* Transition effect */
+            }
+
+            .nav-item:hover::before {
+                background-color: #007bff; /* Color on hover */
+            }
+
+
+        /* Add space between the navigation links */
+        .navbar-nav .nav-link {
+            margin-right: 30px;
+            color: #000 ;
+             font-weight: bold;/* Black font color */
+        }
+        /* Ensure dropdown menu doesn't exceed screen width */
+        .navbar-nav .nav-item.dropdown {
+            position: relative;
+        }
+        .navbar-nav .nav-item.dropdown .dropdown-menu {
+            max-width: 200px;
+        }
+        /* Style for dropdown links */
+        .dropdown-menu .dropdown-item {
+            font-size: 16px;
+            color: ##CDCCC8;
+        }
+
+        /* Style for the active item */
+            .nav-item.active::before {
+                background-color: #007bff; /* Highlighted background color */
+            }
+
+            .nav-item.active a.nav-link {
+                color: #007bff; /* Highlighted text color */
+            }
+
+            /* Your custom styles here */
+        .dashboard-option {
+        background-color: #ffffff; /* White background */
+        color: #000000; /* Black text color */
+        border: 2px solid #000000; /* Black border */
+        border-radius: 10px;
+        padding: 20px 10px; /* Increased padding for height and width */
+        margin: 20px; /* Increased margin for spacing */
+        margin-top:190px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        /* Center the text and image vertically */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        }
+         .dashboard-option:hover {
+                    background-color: #f0f0f0; /* Light gray background on hover */
+                    transform: scale(1.05); /* Increase block size on hover */
+                    border-color: #00ff00; /* Change border color on hover */
+                }
+    </style>
+</head>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Smart Attendance</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Get Student Attendance</h1>
+    <form method="POST" id="attendance-form">
+        <label for="rollno">Roll No:</label>
+        <input type="text" id="rollno" name="rollno" required>
+        <br><br>
+        <button type="button" id="get-attendance">Get Attendance</button> <!-- Change to button type -->
+    </form>
+
+    <div id="attendance-data">
+        <!-- Attendance data will be displayed here -->
+    </div>
+
+    <button type="button" id="generate-pdf">Generate PDF</button>
+
+    <!-- Modify the JavaScript code to add faculty name column -->
+    <!-- Modify the JavaScript code to add faculty name column -->
+<script>
+    // Function to fetch attendance data
+    function getAttendance() {
+        var rollno = document.getElementById('rollno').value;
+
+        // Make an AJAX request to fetch attendance data
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Parse the JSON response
+                var response = JSON.parse(xhr.responseText);
+                var attendanceData = response.attendance_data;
+
+                // Generate the HTML table to display attendance
+                var tableHtml = '<h2>Attendance Records for Roll No: ' + rollno + '</h2>';
+                tableHtml += '<table>';
+                tableHtml += '<thead><tr><th>Date</th><th>Faculty Name</th><th>Course</th><th>Status</th></tr></thead>';
+                tableHtml += '<tbody>';
+
+                for (var i = 0; i < attendanceData.length; i++) {
+                    tableHtml += '<tr>';
+                    tableHtml += '<td>' + attendanceData[i].date + '</td>';
+                    tableHtml += '<td>' + attendanceData[i].faculty_name + '</td>'; // Display faculty name
+                    tableHtml += '<td>' + attendanceData[i].course + '</td>';
+                    tableHtml += '<td>' + attendanceData[i].status + '</td>';
+                    tableHtml += '</tr>';
+                }
+
+                tableHtml += '</tbody></table>';
+
+                // Display the table in the attendance-data div
+                document.getElementById('attendance-data').innerHTML = tableHtml;
+            }
+        };
+
+        xhr.open('POST', '/get_attendance_student', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('rollno=' + rollno);
+    }
+
+    // Add a click event listener to the "Get Attendance" button
+    document.getElementById('get-attendance').addEventListener('click', getAttendance);
+
+    document.getElementById('generate-pdf').addEventListener('click', function() {
+    // Make an AJAX request to generate PDF
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/generate_pdf', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'blob';
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // Create a blob object from the response
+            var blob = new Blob([xhr.response], { type: 'application/pdf' });
+
+            // Generate a URL for the blob
+            var url = window.URL.createObjectURL(blob);
+
+            // Create a link element to trigger the download
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'attendance.pdf';
+            a.style.display = 'none';
+
+            // Append the link to the body and trigger the click event
+            document.body.appendChild(a);
+            a.click();
+
+            // Clean up by removing the link
+            window.URL.revokeObjectURL(url);
+        }
+    };
+
+    xhr.send();
+});
+</script>
+
+</body>
+</html>

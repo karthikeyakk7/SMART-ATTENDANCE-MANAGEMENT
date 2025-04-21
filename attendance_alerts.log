@@ -1,0 +1,179 @@
+2023-09-17 10:28:00,662 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:28:00,666 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:28:00,667 - INFO: Scheduler started
+2023-09-17 10:28:04,499 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:28:04,515 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:28:04,515 - INFO: Scheduler started
+2023-09-17 10:28:30,586 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:28:30,598 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:28:30,598 - INFO: Scheduler started
+2023-09-17 10:32:06,001 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:32:06,001 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:32:06,001 - INFO: Scheduler started
+2023-09-17 10:32:58,518 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:32:58,534 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:32:58,534 - INFO: Scheduler started
+2023-09-17 10:36:40,823 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:36:40,823 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:36:40,823 - INFO: Scheduler started
+2023-09-17 10:37:30,287 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:37:30,287 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:37:30,287 - INFO: Scheduler started
+2023-09-17 10:37:34,048 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:37:34,050 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:37:34,050 - INFO: Scheduler started
+2023-09-17 10:38:14,452 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:38:14,452 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:38:14,452 - INFO: Scheduler started
+2023-09-17 10:38:18,101 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:38:18,101 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:38:18,117 - INFO: Scheduler started
+2023-09-17 10:48:14,333 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:48:14,333 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:48:14,333 - INFO: Scheduler started
+2023-09-17 10:48:14,865 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:48:14,865 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:48:14,865 - INFO: Scheduler started
+2023-09-17 10:48:27,989 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:48:27,989 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:48:27,989 - INFO: Scheduler started
+2023-09-17 10:48:28,020 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:48:28,020 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:48:28,020 - INFO: Scheduler started
+2023-09-17 10:48:35,403 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:48:35,403 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:48:35,403 - INFO: Scheduler started
+2023-09-17 10:48:35,447 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:48:35,451 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:48:35,451 - INFO: Scheduler started
+2023-09-17 10:49:31,187 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:49:31,187 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:49:31,187 - INFO: Scheduler started
+2023-09-17 10:49:31,461 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:49:31,469 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:49:31,469 - INFO: Scheduler started
+2023-09-17 10:50:00,043 - INFO: Running job "send_attendance_alerts (trigger: cron[hour='10', minute='50'], next run at: 2023-09-17 10:50:00 IST)" (scheduled at 2023-09-17 10:50:00+05:30)
+2023-09-17 10:50:00,059 - ERROR: Job "send_attendance_alerts (trigger: cron[hour='10', minute='50'], next run at: 2023-09-18 10:50:00 IST)" raised an exception
+Traceback (most recent call last):
+  File "C:\Users\avula\PycharmProjects\pythonProject1\venv\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "C:\Users\avula\PycharmProjects\pythonProject1\app.py", line 449, in send_attendance_alerts
+    if result and result["total_classes"] > 0:
+TypeError: tuple indices must be integers or slices, not str
+2023-09-17 10:50:00,059 - ERROR: Job "send_attendance_alerts (trigger: cron[hour='10', minute='50'], next run at: 2023-09-18 10:50:00 IST)" raised an exception
+Traceback (most recent call last):
+  File "C:\Users\avula\PycharmProjects\pythonProject1\venv\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "C:\Users\avula\PycharmProjects\pythonProject1\app.py", line 449, in send_attendance_alerts
+    if result and result["total_classes"] > 0:
+TypeError: tuple indices must be integers or slices, not str
+2023-09-17 10:52:29,952 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:52:29,952 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:52:29,952 - INFO: Scheduler started
+2023-09-17 10:52:30,624 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:52:30,670 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:52:30,670 - INFO: Scheduler started
+2023-09-17 10:52:46,656 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:52:46,656 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:52:46,672 - INFO: Scheduler started
+2023-09-17 10:52:46,828 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:52:46,828 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:52:46,828 - INFO: Scheduler started
+2023-09-17 10:52:59,912 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:52:59,912 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:52:59,912 - INFO: Scheduler started
+2023-09-17 10:53:00,017 - INFO: Running job "send_attendance_alerts (trigger: cron[hour='10', minute='53'], next run at: 2023-09-17 10:53:00 IST)" (scheduled at 2023-09-17 10:53:00+05:30)
+2023-09-17 10:53:00,036 - INFO: Student AVULA AJAY (Roll No: 20r11a05c8) has 75.00% attendance.
+2023-09-17 10:53:00,036 - INFO: Student SRI RAM (Roll No: 20r11a0597) has 50.00% attendance.
+2023-09-17 10:53:00,036 - INFO: Student aky (Roll No: 20r11a04c8) has 0.00% attendance.
+2023-09-17 10:53:00,048 - INFO: Student Chandralokesh (Roll No: 20r11a05d8) has 50.00% attendance.
+2023-09-17 10:53:00,049 - INFO: Student G Vijay Kumar (Roll No: 20r11a05e2) has 100.00% attendance.
+2023-09-17 10:53:00,049 - INFO: Student Tatiparthy Sunny  (Roll No: 20r11a05b4) has 50.00% attendance.
+2023-09-17 10:53:00,049 - INFO: Job "send_attendance_alerts (trigger: cron[hour='10', minute='53'], next run at: 2023-09-18 10:53:00 IST)" executed successfully
+2023-09-17 10:53:00,228 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:53:00,228 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:53:00,228 - INFO: Scheduler started
+2023-09-17 10:54:04,088 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:54:04,088 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:54:04,088 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:54:04,088 - INFO: Scheduler started
+2023-09-17 10:54:04,104 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:54:04,104 - INFO: Scheduler started
+2023-09-17 10:54:55,462 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:54:55,477 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:54:55,477 - INFO: Scheduler started
+2023-09-17 10:54:56,759 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:54:56,759 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:54:56,759 - INFO: Scheduler started
+2023-09-17 10:55:55,457 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:55:55,457 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:55:55,457 - INFO: Scheduler started
+2023-09-17 10:55:55,695 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:55:55,696 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:55:55,696 - INFO: Scheduler started
+2023-09-17 10:56:47,709 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:56:47,709 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:56:47,709 - INFO: Scheduler started
+2023-09-17 10:56:47,803 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-17 10:56:47,803 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-17 10:56:47,803 - INFO: Scheduler started
+2023-09-22 09:18:29,298 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 09:18:29,314 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 09:18:29,314 - INFO: Scheduler started
+2023-09-22 09:18:33,018 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 09:18:33,018 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 09:18:33,018 - INFO: Scheduler started
+2023-09-22 13:14:28,828 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 13:14:28,844 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 13:14:28,844 - INFO: Scheduler started
+2023-09-22 13:14:35,503 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 13:14:35,503 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 13:14:35,503 - INFO: Scheduler started
+2023-09-22 13:50:44,590 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 13:50:44,595 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 13:50:44,595 - INFO: Scheduler started
+2023-09-22 13:50:49,080 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 13:50:49,080 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 13:50:49,080 - INFO: Scheduler started
+2023-09-22 13:54:01,247 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 13:54:01,263 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 13:54:01,263 - INFO: Scheduler started
+2023-09-22 13:54:06,220 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 13:54:06,228 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 13:54:06,228 - INFO: Scheduler started
+2023-09-22 13:54:14,141 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 13:54:14,141 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 13:54:14,141 - INFO: Scheduler started
+2023-09-22 13:55:00,333 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 13:55:00,349 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 13:55:00,349 - INFO: Scheduler started
+2023-09-22 13:55:04,486 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 13:55:04,494 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 13:55:04,494 - INFO: Scheduler started
+2023-09-22 14:00:23,080 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-09-22 14:00:23,080 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-09-22 14:00:23,080 - INFO: Scheduler started
+2023-10-14 11:23:09,552 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-10-14 11:23:09,552 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-10-14 11:23:09,552 - INFO: Scheduler started
+2023-10-14 11:23:14,682 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-10-14 11:23:14,682 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-10-14 11:23:14,682 - INFO: Scheduler started
+2023-10-14 11:23:43,224 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-10-14 11:23:43,240 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-10-14 11:23:43,240 - INFO: Scheduler started
+2023-10-14 11:23:46,831 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-10-14 11:23:46,831 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-10-14 11:23:46,831 - INFO: Scheduler started
+2023-10-29 11:27:57,698 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-10-29 11:27:57,698 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-10-29 11:27:57,698 - INFO: Scheduler started
+2023-10-29 11:28:03,441 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-10-29 11:28:03,456 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-10-29 11:28:03,456 - INFO: Scheduler started
+2023-10-29 11:28:05,024 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-10-29 11:28:05,040 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-10-29 11:28:05,040 - INFO: Scheduler started
+2023-10-29 11:28:09,871 - INFO: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-10-29 11:28:09,880 - INFO: Added job "send_attendance_alerts" to job store "default"
+2023-10-29 11:28:09,880 - INFO: Scheduler started

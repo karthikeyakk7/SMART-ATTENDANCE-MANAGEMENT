@@ -1,0 +1,60 @@
+Date: 26/8/2023
+Time: 22:12
+Phone Number: +919652236817
+Message: Attendance Report for Date: 2023-08-26, Course: mllabNo of students present ('P' marked students): 2No of students absent ('A' marked students): 0Roll No of absent students ('A' marked students):
+--------------------
+Date: 27/8/2023
+Time: 21:13
+Phone Number: +919652236817
+Message: Attendance Report for Date: 2023-08-27, Course: mllabNo of students present ('P' marked students): 2No of students absent ('A' marked students): 0Roll No of absent students ('A' marked students):
+--------------------
+Date: 27/8/2023
+Time: 21:19
+Phone Number: +919652236817
+Message: Attendance Report for Date: 2023-08-27, Course: mllabNo of students present ('P' marked students): 2No of students absent ('A' marked students): 0Roll No of absent students ('A' marked students):
+--------------------
+Date: 27/8/2023
+Time: 21:28
+Phone Number: +919652236817
+Message: Attendance Report for Date: 2023-08-27, Course: mllabNo of students present ('P' marked students): 2No of students absent ('A' marked students): 0Roll No of absent students ('A' marked students):
+--------------------
+Date: 27/8/2023
+Time: 21:29
+Phone Number: +919652236817
+Message: Attendance Report for Date: 2023-08-27, Course: mllabNo of students present ('P' marked students): 2No of students absent ('A' marked students): 0Roll No of absent students ('A' marked students):
+--------------------
+Date: 27/8/2023
+Time: 21:34
+Phone Number: +919014532011
+Message: Attendance Report for Date: 2023-08-27, Course: mllabNo of students present ('P' marked students): 2No of students absent ('A' marked students): 0Roll No of absent students ('A' marked students):
+--------------------
+Date: 27/8/2023
+Time: 21:36
+Phone Number: +919014532011
+Message: Attendance Report for Date: 2023-08-27, Course: mllabNo of students present ('P' marked students): 1No of students absent ('A' marked students): 1Roll No of absent students ('A' marked students): SRI RAM
+--------------------
+Date: 31/8/2023
+Time: 18:37
+Phone Number: +919652236817
+Message: Attendance Report for Date: 2023-09-01, Course: mllabNo of students present : 3No of students absent : 1Roll No of absent students : AVULA AJAY
+--------------------
+Date: 14/9/2023
+Time: 11:3
+Phone Number: +919652236817
+Message: Attendance Report for Date: 2023-09-14, Faculty name: ajay Course: mllabNo of students present : 3No of students absent : 2Roll No of absent students : 20r11a05c8, 20r11a05d8
+--------------------
+Date: 16/9/2023
+Time: 21:53
+Phone Number: +919652236817
+Message: attendance alert ----------------------Your cumulative attendance is less than 65%. If you continue the same, you will be detained for writing end semester exams. So, kindly attend the classes and improve your attendance and do well in the exams.-with regards from college management
+--------------------
+Date: 22/9/2023
+Time: 13:55
+Phone Number: +919652236817
+Message: Attendance Report for Date: 2023-09-22, Faculty name: ajay Course: bdaNo of students present : 3No of students absent : 2Roll No of absent students : 20r11a0597, 20r11a05d8
+--------------------
+Date: 22/9/2023
+Time: 14:0
+Phone Number: +919948330248
+Message: Attendance Report for Date: 2023-09-22, Faculty name: Krishna Rao P Course: bdaNo of students present : 3No of students absent : 2Roll No of absent students : 20r11a0597, 20r11a05d8
+--------------------

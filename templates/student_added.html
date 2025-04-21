@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Added Successfully</title>
+    <!-- Add any necessary CSS for styling -->
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .tick-mark {
+            font-size: 60px;
+            color: green;
+            animation: scaleUp 1s ease-in-out;
+        }
+
+        .message {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .link-to-dashboard {
+            margin-top: 20px;
+            text-decoration: none;
+            color: blue;
+            font-weight: bold;
+        }
+
+        /* Animation keyframes */
+        @keyframes scaleUp {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tick-mark">&#10004;</div>
+    <div class="message">Student added successfully!</div>
+    <a class="link-to-dashboard" href="/admin-dashboard">Go to Admin Dashboard</a>
+</body>
+</html>

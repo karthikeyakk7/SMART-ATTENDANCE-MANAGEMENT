@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Signup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <style>
+        /* Custom styles specific to your project */
+        .navbar-brand {
+            font-size: 24px;
+        }
+        .content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+        /* Custom CSS for showing dropdown on hover */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        /* Custom CSS to remove caret symbol */
+        .nav-item.dropdown > a::after {
+            display: none;
+        }
+        /* Custom CSS for changing background color on hover */
+        .dropdown-item:hover {
+            background-color: #CDCCC8;
+        }
+        /* Style for the active item */
+            .nav-item.active::before {
+                background-color: #007bff; /* Highlighted background color */
+            }
+
+            .nav-item.active a.nav-link {
+                color: #007bff; /* Highlighted text color */
+            }
+
+        /* Additional styles for responsiveness and beautification */
+        body {
+        background-image:url('https://img.freepik.com/premium-photo/3d-character-studying-laptop-while-sitting-books_145373-530.jpg?w=740');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: left;
+            background-size: auto 100%;
+        }
+        .navbar-nav .nav-link {
+            margin-right: 30px;
+            color: #000 ;
+             font-weight: bold;/* Black font color */
+        }
+        /* Ensure dropdown menu doesn't exceed screen width */
+        .navbar-nav .nav-item.dropdown {
+            position: relative;
+        }
+        .navbar-nav .nav-item.dropdown .dropdown-menu {
+            max-width: 200px;
+        }
+        /* Style for dropdown links */
+        .dropdown-menu .dropdown-item {
+            font-size: 16px;
+            color: ##CDCCC8;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <span class="navbar-brand">Smart Attendance</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button" data-toggle="dropdown">
+                        User
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="/login/student">Student</a>
+                        <a class="dropdown-item" href="/login/faculty">Faculty</a>
+                        <a class="dropdown-item" href="/login/admin">Admin</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-5 offset-lg-6">
+            <div class="content">
+                <h1 class="text-center" style="margin-top:-15%">Student Signup</h1>
+                <form action="/signup/student" method="POST" class="signup-form">
+                    <input type="text" id="name" name="name" placeholder="Name" required class="form-control mb-3">
+                    <input type="text" id="username" name="username" placeholder="Username (Unique)" required class="form-control mb-3">
+                    <input type="password" id="password" name="password" placeholder="Password(>=8 chars,with capital, symbol,and lowercase)" required class="form-control mb-3">
+                    <select id="branch" name="branch" required class="form-control mb-3">
+                        <option value="" disabled selected>Select Branch</option>
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EEE">EEE</option>
+                        <option value="ME">ME</option>
+                        <option value="CIVIL">CIVIL</option>
+                    </select>
+                    <select id="year" name="year" required class="form-control mb-3">
+                        <option value="" disabled selected>Select Year</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <select id="semester" name="semester" required class="form-control mb-3">
+                        <option value="" disabled selected>Select Semester</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                    <select id="section" name="section" required class="form-control mb-3">
+                        <option value="" disabled selected>Select Section</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                    </select>
+                    <input type="text" id="rollno" name="rollno" placeholder="Roll No" required class="form-control mb-3">
+                    <input type="tel" id="mobileno" name="mobileno" placeholder="Mobile No (10 digits)" required pattern="[0-9]{10}" class="form-control mb-3">
+                    <input type="submit" value="Signup" class="btn btn-primary btn-block">
+                </form>
+                <p class="text-center mt" style="margin-top:1%">Have an account? <a href="/login/student">Login Now</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

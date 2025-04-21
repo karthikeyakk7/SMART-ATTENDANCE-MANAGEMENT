@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles specific to your project */
+        .navbar-brand {
+            font-size: 24px;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+        /* Custom CSS for showing dropdown on hover */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        /* Custom CSS to remove caret symbol */
+        .nav-item.dropdown > a::after {
+            display: none;
+        }
+        /* Custom CSS for changing background color on hover */
+        .dropdown-item:hover {
+            background-color: #CDCCC8;
+        }
+
+        /* Additional styles for responsiveness and beautification */
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        /* Style for the table */
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px; /* Add space between the form and table */
+            margin: auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #CDCCC8;
+        }
+        /* Add space between table rows */
+        tr {
+            margin-bottom: 10px;
+        }
+        .center{
+            text-align: center;
+        }
+    </style>
+    <!-- Include any CSS or stylesheets you have here -->
+</head>
+<body>
+<div class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <span class="navbar-brand">Smart Attendance</span>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >
+                        {{ faculty_name }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{url_for('faculty_dashboard')}}">Home</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{url_for('home')}}">Log out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h1 class="center">Mark Attendance</h1>
+    <form method="POST" action="/process_attendance" class="center">
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date" required>
+        <label for="course">Course:</label>
+        <input type="text" name="course" id="course" required>
+
+        <input type="hidden" name="branch" value="{{ branch }}">
+        <input type="hidden" name="year" value="{{ year }}">
+        <input type="hidden" name="semester" value="{{ semester }}">
+        <input type="hidden" name="section" value="{{ section }}">
+
+        <br><br>
+        <table class="center">
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Attendance Status</th>
+            </tr>
+            {% for student in students %}
+            <tr>
+                <td>{{ student[0] }}</td>
+                <td>{{ student[1] }}</td>
+                <td>
+                    <input type="radio" name="status_{{ student[0] }}" value="p" required> Present
+                    <input type="radio" name="status_{{ student[0] }}" value="a" required> Absent
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <input type="submit" value="Submit Attendance">
+    </form>
+</body>
+</html>

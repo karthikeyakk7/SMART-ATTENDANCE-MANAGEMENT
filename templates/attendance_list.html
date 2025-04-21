@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance List</title>
+    <!-- Include your CSS styles here if needed -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add page-level styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            width: 40%; /* Increase label width */
+            display: inline-block;
+            text-align: left;
+            margin-right: 10px;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 300%; /* Decrease input width */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[name="get_list"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td .update-btn {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .updated-status {
+            font-weight: bold;
+        }
+
+        .status-present {
+            color: green;
+        }
+
+        .status-absent {
+            color: red;
+        }
+        /* Your custom styles here */
+
+        .navbar-brand {
+            font-size: 24px;
+        }
+        /* Custom CSS for showing dropdown on hover */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        /* Custom CSS to remove caret symbol */
+        .nav-item.dropdown > a::after {
+            display: none;
+        }
+        /* Custom CSS for changing background color on hover */
+        .dropdown-item:hover {
+            background-color: #CDCCC8; /* Bootstrap primary color */
+            color: #000;
+            text-style: bold; /* White text color */
+        }
+
+        /* Additional styles for responsiveness and beautification */
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        /* Additional styles for the hover effect */
+        .navbar-nav .nav-item {
+            position: relative;
+        }
+
+        .nav-item::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px; /* Height of the rectangle */
+            background-color: transparent; /* Initial color */
+            bottom: 0;
+            left: 0;
+            transition: background-color 0.3s ease; /* Transition effect */
+        }
+
+        .nav-item:hover::before {
+            background-color: #007bff; /* Color on hover */
+        }
+
+        /* Add space between the navigation links */
+        .navbar-nav .nav-link {
+            margin-right: 90px;
+            color: #000;
+            font-weight: bold; /* Black font color */
+        }
+
+        /* Ensure dropdown menu doesn't exceed screen width */
+        .navbar-nav .nav-item.dropdown {
+            position: relative;
+        }
+
+        .navbar-nav .nav-item.dropdown .dropdown-menu {
+            max-width: 200px;
+        }
+
+        /* Style for dropdown links */
+        .dropdown-menu .dropdown-item {
+            font-size: 16px;
+            color: #000;
+        }
+
+        /* Style for the active item */
+        .nav-item.active::before {
+            background-color: #007bff; /* Highlighted background color */
+        }
+
+        .nav-item.active a.nav-link {
+            color: #007bff; /* Highlighted text color */
+        }
+        /* Custom styles for label and input alignment */
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Smart Attendance</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                        <a class="dropdown-item" href="/logout" >Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Student Attendance List</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="rollno">Roll No:</label>
+                <input type="text" id="rollno" name="rollno" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <button type="submit" name="get_list" onclick="scrollToTable()">Get List</button>
+        </form>
+
+        {% if attendance_data %}
+        <br>
+        <h4>Attendance Records of &nbsp; {{ rollno }}  &nbsp; on &nbsp; {{ date }}</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Faculty Name</th>
+                    <th>Course</th>
+                    <th>Status</th>
+                    <th>Updated Status</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in attendance_data %}
+                <tr>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                    <td id="status_{{ record[0] }}" class="{% if record[4] == 'a' %}status-absent{% elif record[4] == 'p' %}status-present{% endif %}">
+                        {{ record[4] }}
+                    </td>
+                    <td>
+                        <div class="form-group">
+                        <label for="updated_status_{{ record[0] }}_present">Present</label>
+                        <input type="radio" id="updated_status_{{ record[0] }}_present" name="updated_status_{{ record[0] }}" value="p">
+
+                        <label for="updated_status_{{ record[0] }}_absent">Absent</label>
+                        <input type="radio" id="updated_status_{{ record[0] }}_absent" name="updated_status_{{ record[0] }}" value="a">
+                        </div>
+                    </td>
+                    <td>
+                        <button class="update-btn" type="button" onclick="updateStatus('{{ record[0] }}')">Update</button>
+                        <span id="updated_{{ record[0] }}"></span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+    <script>
+        // Function to scroll to the table when "Get List" is clicked
+        function scrollToTable() {
+            const table = document.querySelector('table');
+            table.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateStatus(recordId) {
+            var updatedStatus = document.querySelector('input[name="updated_status_' + recordId + '"]:checked');
+            if (updatedStatus) {
+                var status = updatedStatus.value;
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        // Update the status column dynamically
+                        var statusColumn = document.getElementById('status_' + recordId);
+                        statusColumn.textContent = status;
+                        statusColumn.classList.remove('status-present', 'status-absent');
+                        statusColumn.classList.add('updated-status');
+
+                        // Add a tick mark
+                        var updatedSpan = document.getElementById('updated_' + recordId);
+                        updatedSpan.innerHTML = '✓';
+
+                        // Set text color based on status
+                        if (status === 'p') {
+                            statusColumn.style.color = 'green';
+                        } else if (status === 'a') {
+                            statusColumn.style.color = 'red';
+                        }
+                    }
+                };
+                xhr.open('POST', '/update_attendance_status', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send('record_id=' + recordId + '&status=' + status);
+            }
+        }
+
+        // Function to reset form inputs on page refresh
+        window.onload = function () {
+            var rollnoInput = document.getElementById('rollno');
+            var dateInput = document.getElementById('date');
+            if (rollnoInput) {
+                rollnoInput.value = '';
+            }
+            if (dateInput) {
+                dateInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>

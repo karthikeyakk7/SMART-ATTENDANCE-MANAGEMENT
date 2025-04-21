@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title> <!-- Include your custom styles if needed -->
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Font Awesome for icons -->
+    <style>
+        /* Custom styles specific to your project */
+        .navbar-brand {
+            font-size: 24px;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-right:150px;
+            margin-top:50px;
+            padding: 30px;
+            border: 5px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        body{
+            background-image:url('https://img.freepik.com/premium-photo/cute-school-boy_917213-9743.jpg?w=740');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: left;
+            background-size: auto 80%;
+            background-color:#cdd2d5;
+        }
+
+        /* Your custom styles here */
+
+        .navbar-brand {
+            font-size: 24px;
+        }
+        /* Custom CSS for showing dropdown on hover */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        /* Custom CSS to remove caret symbol */
+        .nav-item.dropdown > a::after {
+            display: none;
+        }
+        /* Custom CSS for changing background color on hover */
+        .dropdown-item:hover {
+            background-color: #CDCCC8; /* Bootstrap primary color */
+            color: #000;
+            text-style:bold;/* White text color */
+        }
+
+        /* Additional styles for responsiveness and beautification */
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        /* Additional styles for the hover effect */
+        .navbar-nav .nav-item {
+            position: relative;
+        }
+
+        .nav-item::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px; /* Height of the rectangle */
+            background-color: transparent; /* Initial color */
+            bottom: 0;
+            left: 0;
+            transition: background-color 0.3s ease; /* Transition effect */
+        }
+
+        .nav-item:hover::before {
+            background-color: #007bff; /* Color on hover */
+        }
+
+        /* Add space between the navigation links */
+        .navbar-nav .nav-link {
+            margin-right: 100px;
+            color: #000;
+            font-weight: bold; /* Black font color */
+        }
+
+        /* Ensure dropdown menu doesn't exceed screen width */
+        .navbar-nav .nav-item.dropdown {
+            position: relative;
+        }
+
+        .navbar-nav .nav-item.dropdown .dropdown-menu {
+            max-width: 200px;
+        }
+
+        /* Style for dropdown links */
+        .dropdown-menu .dropdown-item {
+            font-size: 16px;
+            color: ##CDCCC8;
+        }
+
+        /* Style for the active item */
+        .nav-item.active::before {
+            background-color: #007bff; /* Highlighted background color */
+        }
+
+        .nav-item.active a.nav-link {
+            color: #007bff; /* Highlighted text color */
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Custom styles for attendance messages and border colors */
+        .attendance-low {
+            border-color: #ffc0cb; /* Light pale red border color */
+        }
+
+        .attendance-ok {
+            border-color: #ffcc80; /* Light pale orange border color */
+        }
+
+        .attendance-good {
+            border-color: #c1ffc0; /* Light pale green border color */
+        }
+
+        .attendance-excellent {
+            border-color: #aaffaa; /* Light green border color */
+        }
+
+        /* Additional styles for attendance messages */
+        .alert {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            animation: fadeIn 1s ease-in-out, pulse 1.5s infinite;
+        }
+
+        .alert-danger {
+            background-color: #ffc0cb; /* Light pale red background color */
+            color: #ff0000; /* Red text color */
+        }
+
+        .alert-warning {
+            background-color: #ffcc80; /* Light pale orange background color */
+            color: #ff6600; /* Orange text color */
+        }
+
+        .alert-success {
+            background-color: #c1ffc0; /* Light pale green background color */
+            color: #009900; /* Green text color */
+        }
+
+        .alert-excellent {
+            background-color: #aaffaa; /* Light green background color */
+            color: #006600; /* Dark green text color */
+        }
+        /* Define fade-in animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Define pulse animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body> <!-- Wrap the navbar in a container-fluid -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <a class="navbar-brand" href="#">Smart Attendance</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if username %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="userDropdown">
+                        <!-- Link to the logout route -->
+                        <a class="dropdown-item" href="{{ url_for('logout') }}">Log out</a>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="content  {% if overall_attendance <= 65 %}attendance-low{% elif overall_attendance < 80 %}attendance-ok{% elif overall_attendance < 90 %}attendance-good{% else %}attendance-excellent{% endif %}">
+        <h1 class="text-center">Welcome, {{ student_name }}!</h1>
+        <table class="table table-bordered">
+            <tr>
+                <th>Roll No</th>
+                <td>{{ rollno }}</td>
+            </tr>
+            <tr>
+                <th>Branch</th>
+                <td>{{ branch }}</td>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <td>{{ year }}</td>
+            </tr>
+            <tr>
+                <th>Semester</th>
+                <td>{{ semester }}</td>
+            </tr>
+            <tr>
+                <th>Section</th>
+                <td>{{ section }}</td>
+            </tr>
+           <tr>
+                <th>Cumulative Attendance</th>
+                <td>{{ cumulative_attendance }}%</td>
+            </tr>
+            <tr>
+                <th>Overall Attendance</th>
+                <td>{{ overall_attendance }}%</td>
+            </tr>
+        </table>
+
+        {% if overall_attendance <= 65 %}
+        <div class="alert alert-danger" role="alert">
+            Your attendance is too low, and you may get detained 😞..!
+        </div>
+        {% elif overall_attendance < 80 %}
+        <div class="alert alert-warning" role="alert">
+            Your attendance is ok, try to improve it 👍..!
+        </div>
+        {% elif overall_attendance < 90 %}
+        <div class="alert alert-success" role="alert">
+            Your attendance is good 🙌...!
+        </div>
+        {% else %}
+        <div class="alert alert-excellent" role="alert">
+            Your attendance is excellent🤟..!
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

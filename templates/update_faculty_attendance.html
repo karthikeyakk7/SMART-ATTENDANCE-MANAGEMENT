@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include your CSS and JavaScript links here -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        /* Add table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Your custom styles here */
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .container input, .container select, .container button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .container button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 14px;
+            width: 100%;
+            padding: 8px;
+        }
+
+        .container button:hover {
+            background-color: #0056b3;
+            transform: scale(0.95);
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+        }
+
+        .input-grid label {
+            font-weight: bold;
+        }
+
+        /* Table container */
+        .table-container {
+            display: none;
+            margin-top: 20px;
+            animation: slideIn 0.5s ease;
+        }
+
+        /* Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Your custom styles here */
+
+        .navbar-brand {
+            font-size: 24px;
+        }
+
+        /* Custom CSS for showing dropdown on hover */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Custom CSS to remove caret symbol */
+        .nav-item.dropdown > a::after {
+            display: none;
+        }
+
+        /* Custom CSS for changing background color on hover */
+        .dropdown-item:hover {
+            background-color: #CDCCC8; /* Bootstrap primary color */
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* Additional styles for responsiveness and beautification */
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        /* Additional styles for the hover effect */
+        .navbar-nav .nav-item {
+            position: relative;
+        }
+
+        .nav-item::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px; /* Height of the rectangle */
+            background-color: transparent; /* Initial color */
+            bottom: 0;
+            left: 0;
+            transition: background-color 0.3s ease; /* Transition effect */
+        }
+
+        .nav-item:hover::before {
+            background-color: #007bff; /* Color on hover */
+        }
+
+        /* Add space between the navigation links */
+        .navbar-nav .nav-link {
+            margin-right: 30px;
+            color: #000 ;
+            font-weight: bold;
+        }
+
+        /* Ensure dropdown menu doesn't exceed screen width */
+        .navbar-nav .nav-item.dropdown {
+            position: relative;
+        }
+
+        .navbar-nav .nav-item.dropdown .dropdown-menu {
+            max-width: 200px;
+        }
+
+        /* Style for dropdown links */
+        .dropdown-menu .dropdown-item {
+            font-size: 16px;
+            color: ##CDCCC8;
+        }
+
+        /* Style for the active item */
+        .nav-item.active::before {
+            background-color: #007bff; /* Highlighted background color */
+        }
+
+        .nav-item.active a.nav-link {
+            color: #007bff; /* Highlighted text color */
+        }
+        .tick-mark {
+            color: green; /* Color of the tick mark */
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Smart Attendance</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h1>Student Attendance List</h1>
+    <form method="POST" id="attendanceForm">
+        <div class="input-grid">
+            <div>
+                <label for="branch">Branch:</label>
+                <select id="branch" name="branch" required>
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="ME">ME</option>
+                    <option value="CIVIL">CIVIL</option>
+                </select>
+            </div>
+            <div>
+                <label for="year">Year:</label>
+                <select id="year" name="year" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div>
+                <label for="semester">Semester:</label>
+                <select id="semester" name="semester" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <div>
+                <label for="section">Section:</label>
+                <select id="section" name="section" required>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                </select>
+            </div>
+            <div>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div>
+                <label for="course">Course:</label>
+                <input type="text" id="course" name="course" required>
+            </div>
+        </div>
+        <button type="submit" name="get_list">Get List</button>
+    </form>
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+        <tr>
+            <th>Roll No</th>
+            <th>Student Name</th>
+            <th>Status</th>
+            <th>Updated Status</th>
+            <th>Update</th>
+        </tr>
+        </thead>
+        <tbody id="attendanceRecords">
+        <!-- Records will be dynamically populated here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Your JavaScript code for updating the status using AJAX -->
+<script>
+    document.getElementById('attendanceForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+        var form = this;
+        var formData = new FormData(form);
+
+        // Send an AJAX request to fetch the attendance records
+        fetch('/fetch_attendance_records', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json()) // Parse the JSON response
+        .then(data => {
+            if (data.length === 0) {
+                // No records found, show an alert message
+                alert('No records found.');
+                // Refresh the page
+                location.reload();
+            } else {
+                // Function to update the attendance records on the page
+                updateAttendanceRecords(data);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+
+    function updateAttendanceRecords(records) {
+        // Sort the records by roll number in ascending order
+        records.sort((a, b) => a.rollno - b.rollno);
+
+        // Clear the existing attendance records on the page
+        var tableBody = document.getElementById('attendanceRecords');
+        tableBody.innerHTML = '';
+
+        // Loop through the fetched records and add them to the table
+        records.forEach(record => {
+            var row = document.createElement('tr');
+            var rollnoCell = document.createElement('td');
+            var nameCell = document.createElement('td');
+            var statusCell = document.createElement('td');
+            var updatedStatusCell = document.createElement('td');
+            var updateCell = document.createElement('td');
+
+            rollnoCell.textContent = record.rollno;
+            nameCell.textContent = record.name;
+            statusCell.textContent = record.status;
+
+            // Create radio buttons for updating status
+            var presentLabel = document.createElement('label');
+            presentLabel.textContent = 'Present';
+            var presentInput = document.createElement('input');
+            presentInput.type = 'radio';
+            presentInput.name = 'updated_status_' + record.rollno;
+            presentInput.value = 'p';
+
+            var absentLabel = document.createElement('label');
+            absentLabel.textContent = 'Absent';
+            var absentInput = document.createElement('input');
+            absentInput.type = 'radio';
+            absentInput.name = 'updated_status_' + record.rollno;
+            absentInput.value = 'a';
+
+            updatedStatusCell.appendChild(presentLabel);
+            updatedStatusCell.appendChild(presentInput);
+            updatedStatusCell.appendChild(absentLabel);
+            updatedStatusCell.appendChild(absentInput);
+
+            // Create update button
+            var updateButton = document.createElement('button');
+            updateButton.className = 'btn btn-success update-btn';
+            updateButton.type = 'button';
+            updateButton.textContent = 'Update';
+            updateButton.addEventListener('click', function () {
+                updateStatus(record.rollno);
+            });
+
+            var updatedSpan = document.createElement('span');
+            updatedSpan.id = 'tick_' + record.rollno;
+            updatedSpan.classList.add('tick-mark'); // Add tick mark class
+
+            updateCell.appendChild(updateButton);
+            updateCell.appendChild(updatedSpan);
+
+            // Append cells to the row
+            row.appendChild(rollnoCell);
+            row.appendChild(nameCell);
+            row.appendChild(statusCell);
+            row.appendChild(updatedStatusCell);
+            row.appendChild(updateCell);
+
+            // Append the row to the table
+            tableBody.appendChild(row);
+        });
+
+        // Show the table container with animation
+        var tableContainer = document.querySelector('.table-container');
+        tableContainer.style.display = 'block';
+        tableContainer.style.animation = 'slideIn 0.5s ease';
+    }
+
+    function updateStatus(recordId) {
+        var updatedStatus = document.querySelector('input[name="updated_status_' + recordId + '"]:checked');
+        if (updatedStatus) {
+            var status = updatedStatus.value;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // Get the status cell and update its content
+                        var statusCell = document.getElementById('status_' + recordId);
+                        statusCell.textContent = status;
+
+                        // Add a tick mark
+                        var updatedSpan = document.getElementById('updated_' + recordId);
+                        updatedSpan.innerHTML = '✓';
+                        updatedSpan.classList.add('tick-mark');
+
+                        // Clear radio button selection
+                        updatedStatus.checked = false;
+                    } else {
+                        console.error('Error:', xhr.status);
+                    }
+                }
+            };
+            xhr.open('POST', '/update_status', true); // Updated route name
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('record_id=' + recordId + '&status=' + status);
+        }
+    }
+</script>
+
+</body>
+</html>
